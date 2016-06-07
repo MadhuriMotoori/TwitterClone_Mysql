@@ -1,0 +1,266 @@
+body{
+    align:center;
+    padding:50px 0px 0px 0px;
+    z-index:0;
+    background-color: #F5F8FA;
+}
+
+.navbar-inverse {
+     background: #FFFFFF;
+    height: 8px;
+    border: 1px solid darkgray;
+}
+
+
+.image{
+    background-repeat:no-repeat;
+    background-size:cover;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width:100%;
+    height: 125px;
+ 
+    
+}
+
+.image2{
+   width:100%;
+}
+
+.birdimage {
+    margin-left: 220px;
+    margin-top: 20px;
+}
+
+.buttonsgroup{
+    margin-left: 1100px;
+    margin-top: -30px;
+}
+
+#b1:hover
+{
+    background-image:none;
+    background-color:#ffffff;
+    color:cornflowerblue;
+}
+
+#b2:hover
+{
+    background-image:none;
+    background-color:#ffffff;
+    color:cornflowerblue;
+}
+
+#b1{
+    padding: 5px 22px ;
+    color: floralwhite;
+    background-color: transparent;
+    border-color: lightskyblue;
+    font-weight: 200;
+
+}
+
+#b2{
+    padding: 5px 22px ;
+    color: floralwhite;
+    font-weight: 200;
+    background-color: transparent;
+    border-color: lightskyblue;
+    margin-left: 5px;
+
+}
+
+#header {
+    color: #fff;
+    font-weight: 50;
+    line-height: 40px;
+    font-size: 24px;
+    text-rendering: optimizeLegibility;
+    margin-left: 450px;
+    margin-top: -30px;
+}
+
+#subheader {
+    color: #fff;
+    font-weight: 50;
+    font-size: 14px;
+    text-rendering: optimizeLegibility;
+    margin-top: -15px;
+    margin-left: 400px;
+    opacity: .7;
+}
+
+.headerPart{
+    height: 800px;
+    border: 5px;
+    border-bottom-color: black;
+}
+
+#loginBox{
+    margin-top: 40px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    background-color:dodgerblue;
+    color: #fff;
+    height: 350px;
+}
+
+.form-horizontal > * {
+   margin:5px 3px;
+}
+
+#rememberMe{
+    opacity: .7;
+    font-size: 12px;
+    
+}
+
+ @media screen and (min-width: 768px) {
+        .modal-dialog {
+          width: 400px;
+           height: 200px;/* New width for default modal */
+        }
+
+     div.modal{
+  top:200px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100% ;
+
+}
+
+}
+
+#twitterBird {
+    margin-left: 100px;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+  background: #ffffff;
+    color:darkgray;
+    border-bottom: 5px solid #0084B4;
+    border-left: 0px solid #ffffff;
+    height: 48px;
+}
+
+.navbar-inverse .navbar-nav > .active > a:hover {
+  background: #ffffff;
+  color:darkgray;
+}
+
+
+
+.navbar-inverse .navbar-nav > a{
+    height: 10px;
+}
+.nav .navbar-nav{
+    height: 20px;
+}
+
+#search{
+    width: 200px;
+    height: 30px;
+}
+
+#imageDiv{
+    margin-top: 10px; 
+
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 1px solid darkgray;
+}
+
+#imageDivFollowing{
+    margin-top: 0px; 
+
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:#0084B4; 
+    height:150px;
+    width: 3000px;
+    margin-left: -290px;
+}
+
+#imageFollowingFooter{
+    margin-top: 150px; 
+
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color:#ffffff; 
+    height:60px;
+    width: 3000px;
+    margin-left: -290px;
+    border-bottom: 1px solid darkgray;	
+}
+
+#imageDivFollow{
+
+	height: 250px;
+	width: 300px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left:0px;
+    padding-right:0px;
+    border: 1px solid darkgray;
+}
+
+#tweetDiv{
+    margin-top: 10px; 
+    margin-left: 15px;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-right: 0px;
+    border: 0px solid darkgray;
+    background-color: #E5F2F7;
+}
+
+#feed{
+	border: 0px solid darkgray;
+	margin-left : 15px;
+	padding-top: 10px;
+	margin-top: 4px;
+	background-color: #ffffff;
+}
+
+#retweetfeed {
+	background-color: #ffffff;
+	margin-top: 4px;
+	margin-left : 0px;
+}
+
+#feedn{
+	border: 0px solid darkgray;
+	margin-left : 0px;
+	padding-top: 0px;
+	margin-top: 0px;
+	background-color: #ffffff;
+}
+
+.errorStyle{
+	font-color:red;
+}
+
+#link{
+	color: darkgray;
+}
+
+#link:hover{
+	color:#337ab7;
+	text-decoration: none;
+}
+
+#staticbox{
+	border: 1px solid darkgray;
+	background-color: #ffffff;
+	margin-top: 40px;
+	margin-left: 30px;
+	height: 350px;
+}
+
+#innerstaticbox{
+	padding-left: 10px;
+}

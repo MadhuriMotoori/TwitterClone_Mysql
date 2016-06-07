@@ -1,0 +1,155 @@
+<html>
+    <head>
+			<meta http-equiv="Cache-Control"
+				content="no-cache, no-store, must-revalidate" />
+			<meta http-equiv="Pragma" content="no-cache" />
+			<meta http-equiv="Expires" content="0" />
+			
+			<link rel="stylesheet"
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+			<link rel="stylesheet"
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+			<script
+				src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+			</script>
+			<script
+				src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+			<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+			<link rel='stylesheet' href='/stylesheets/mystyles.css' />
+            <title>Twitter</title>
+    </head>
+    <body ng-app="twitterApp" ng-controller="signupController">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="/images/twitterbird.png" height="30">
+                    </a>
+                </div>
+            </div>
+        </nav>                       
+        <div class="container">
+            <div class="row row-content" style="padding-top: 30px;">
+                <form class="form-horizontal" role="form" ng-submit="signup()">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>
+                            <div class="col-xs-12 col-sm-5">
+                                <h3>Join Twitter today.</h2>
+                               <div class="alert alert-danger" ng-hide="username_exists">
+									<strong>Username exists, Please choose a different username</strong>
+								</div>
+								<div class="alert alert-danger" ng-hide="email_exists">
+									<strong>Email already exists</strong>
+								</div>
+								<div class="alert alert-danger" ng-hide="unexpected_error">
+								<strong>Unexpected error, try again</strong>
+							</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <input type="text" class="form-control" name="username" id="username"  placeholder="User name" ng-model="username" required>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" ng-model="email" required>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <input type="text" class="form-control" name="firstname" id="firstname"  placeholder="First name" ng-model="firstname" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <input type="text" class="form-control" name="lastname" id="lastname"  placeholder="Last name" ng-model="lastname" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-6" >
+                                <input type="radio"  name="gender" value="male" ng-model="gender" required> Male
+                                <input type="radio" name="gender" value="female" ng-model="gender"> Female
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <input type="date" class="form-control" name="dob" id="dob"  placeholder="Date of Birth" ng-model="dob" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" ng-model="password" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"> 
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"> 
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <button type="submit" class="btn btn-default col-sm-12">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group"> 
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                            </div>                        
+                            <div class="col-xs-12 col-sm-5">
+                                <span style="font-size: 8pt">
+                                    <p>By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use. Others will be able to find you by email or phone number when provided.</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+        <script src="angularjs/app.js"></script>
+</html>

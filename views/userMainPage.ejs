@@ -1,0 +1,233 @@
+<html>
+
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+    </script>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' >
+
+    <title>Twitter</title>
+</head>
+
+<body ng-app="twitterApp" ng-controller="tweetController" ng-init="initialize()">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/homepage"><span class="glyphicon glyphicon-home"
+                     aria-hidden="true"></span>&nbsp;Home</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-flash"
+                          aria-hidden="true"></span>&nbsp;Moments</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-bell"
+                          aria-hidden="true"></span>&nbsp;Notifications</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-envelope"
+                          aria-hidden="true"></span>&nbsp;Messages</a></li>
+            </ul>
+            <ul class="nav navbar-nav " id="twitterBird">
+                <li><span><img src="/images/twitterbird.png" height="40" style="padding-top: 10px;"></span></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+
+                    <form class="form-inline">
+                        <div class="form-group has-feedback" style="padding-top:10px;">
+                            <input type="text" class="form-control" placeholder="Search" name="search" id="search" ng-model="searchValue">
+  							
+                            <button class="btn btn-default " type="submit" ng-click="search()"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+
+                    </form>
+                </li>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                         role="button" aria-haspopup="true" aria-expanded="false" style="width:50px;">
+                         <img src="/images/avatar.jpg" width="140%" style="margin-top:-5px;"></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="userprofile()">View profile</a></li>
+                            
+                            <li><a href="#">Lists</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Keyboard shortcuts</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Settings</li>
+                            <li><a ng-click="logout()">Log out</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                       <div class="form-group" style="padding-top:10px;">
+                            <div class="col-sm-1">
+                                <button  style="background-color:#339CC3; height:30px"><img src="/images/twitterButton2.png" width="80"></button>
+                            </div>
+                        </div>
+                     </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3" id="imageDiv">
+                <div class="col-sm-12" style="background-color:#0084B4; height:100px">
+                </div>
+                <div style="background-color: #ffffff">
+                <div class="col-sm-12">
+                    <img src="/images/avatar.jpg" class="col-sm-5" width="3%" style="margin-top: -40px; margin-left: -10px;">
+                    <div class="col-sm-6" style="margin-top:10px;">
+                        <div class="row">
+                            <label>{{userInfo.firstname}}</label>
+                        </div>
+                        <div class="row" style="margin-top:-10px;color: darkgray;">
+                            <span>@{{userInfo.username}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="padding-top:10px;margin-left:-10px;">
+                    <div class="col-sm-3">
+                        <span style="color:darkgray;">TWEETS</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span style="color:darkgray;"><a ng-click="following()" id="link">FOLLOWING</a></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <span style="color:darkgray;"><a ng-click="followers()" id="link">FOLLOWERS</a></span>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-left:-10px; padding-bottom: 10px;">
+                    <div class="col-sm-3">
+                        <span style="color:#0084B4">{{tweetInfo.tweets}}</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span style="color:#0084B4">{{tweetInfo.following}}</span>
+                    </div>
+                    <div class="col-sm-5">
+                        <span style="color:#0084B4">{{tweetInfo.followers}}</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div  class="col-sm-6">
+                <div class="col-sm-12" style="padding-left: 30px;" id="tweetDiv">
+                    <form class="form-horizontal" role="form" ng-submit="tweetCall()">
+
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                                <img src="/images/avatar.jpg" height="30">
+                            </div>
+                            <div class="col-sm-10" style: "padding-left: 0px;">
+                                <textarea name="tweet" id="tweet" rows="1" ng-model="tweet" cols="55" ng-click="changeState()"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="writeTweet">
+                            <div class="col-sm-offset-9 col-sm-4">
+                                <button type="submit" style="background-color:#339CC3; height:30px"><img src="/images/twitterButton2.png" width="80"></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                
+                <div >
+                    <ul class="list-unstyled" ng-init="tweetsInfo = tweets">
+                        <li ng-repeat="tweetv in tweetsInfo | orderBy: 'retweetdate': true">
+                        <div class="row" style="margin-top: 4px; margin-left: 15px;" >
+                        <div class="col-sm-12" id="retweetfeed">
+                        	<a href="#" class="col-sm-12" style="margin-left: -10px;" ng-hide=tweetv.hide>{{tweetv.retweetUsername}} retweeted
+                        	<span style="color:darkgray;font-size:12px;" ng-hide=tweetv.hide> {{tweetv.retweetdate | date:'MMM d h' }}hr</span></a>
+                        	<p class="col-sm-12" style="margin-left: -10px;" compile="tweetv.retweetcomment">
+                        	</p>
+                        	
+                        </div >
+                            <div class="col-sm-12" id="feedn">
+                            	
+                            		<img class="col-sm-2" height="40" src="/images/avatar.jpg">
+                            	
+                            <div class="col-sm-9" >
+                            		
+                                    <a href="#" class="col-sm-12" style="margin-left: -20px;">{{tweetv.firstname}}
+                                    <span style="color:darkgray;font-size:12px;"> @{{tweetv.username}}</span>
+                                    <span style="color:darkgray;font-size:12px;"> .{{tweetv.date | date:'MMM d h' }}hr</span></a>
+                                    <p class="col-sm-12" compile="tweetv.tweet" style="margin-left: -20px;" ></p>
+                                    <a href="#" class="col-sm-2" style="margin-left:-10px;margin-top:-4px; margin-bottom: 4px;">
+                                    <span style="color:darkgray;margin-left:-20px;" class="col-sm-4"><i class="icon-reply"></i></span></a>
+									<a type="button"  class="col-sm-2" style="margin-left:-10px;margin-top:-4px; margin-bottom: 4px;"                     data-toggle="modal" 
+									data-target="#tweetModal" ng-click="setvalue(tweetv.id)">
+                                    <span style="color:darkgray;margin-left:-20px;" class="col-sm-4"><i class="icon-retweet"></i></span></a>
+                           	
+                            </div>
+                         </div>
+                         </div>
+                         </li>
+                    </ul>
+                </div>
+                <div>
+                    
+                </div>
+               
+        </div>
+        <div class="col-sm-3">
+        
+        </div>
+    </div>
+    <div id="tweetModal" class="modal fade" role="dialog" >
+        <div class="modal-dialog" >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <p class="modal-title" style="text-align:center;color:darkgray;font-size:14px;">Retweet this to your followers </p>
+                </div>
+                <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal" role="form" >
+	
+                        <div class="form-group">
+                            <div class="col-sm-12" style="margin-left: 10px;">
+                                <textarea name="retweetText" id="retweetText" rows="1" cols="50"  ng-model="retweetText"></textarea>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-group" >
+                            <div class="col-sm-offset-4 col-sm-4">
+                                <button type="submit" ng-click="retweet()" style="background-color:#339CC3; height:30px"><img src="/images/twitterButton2.png" width="80"></button>
+                            </div>
+                        </div>
+                    </form>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="angularjs/app.js"></script>
+    <script>
+        // Check the main container is ready
+        $('#feed').ready(function () {
+            // Get each div
+            $('.content').each(function () {
+                // Get the content
+                var str = $(this).html();
+                // Set the regex string
+                var regex = /(^|\W)(#[a-z\d][\w-]*)/ig
+                    // Replace plain text links by hyperlinks
+                var replaced_text = str.replace(regex, '<a href>$1$2</a>');
+                // Echo link
+                $(this).html(replaced_text);
+            });
+        });
+    </script>
+</body>
+
+</html>
